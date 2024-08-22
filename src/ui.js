@@ -18,7 +18,7 @@ export const renderTasks = () => {
         li.innerHTML = `
             ${task.text}
             <button class="delete"> Eliminar </button>
-            <button class="toggle"> ${ task.completed === false? "Completar" : "Deshacer"} </button>  
+            <button class= ${ task.completed === false? "toggle" : "undo"} > ${ task.completed === false? "Completar" : "Deshacer"} </button>  
         `; // boton con texto dinamico dependiendo de una variable true y false
         
         tasksList.appendChild(li);

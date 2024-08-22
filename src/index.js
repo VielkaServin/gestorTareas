@@ -1,5 +1,6 @@
 import { renderTasks } from "./ui";
 import { addTask, deleteTask, updateTasks } from "./task";
+import confetti from "canvas-confetti";
 
 document.addEventListener("DOMContentLoaded", () => {
     //Hacemos visible la lista de tareas
@@ -9,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("task-form").addEventListener("submit", (e) => {
         e.preventDefault();
         const taskInput = document.getElementById("task-input");
-        if( taskInput!== "") {
+        if( taskInput.value !== "") {
             //agreganmos la tarea
             addTask(taskInput.value);
 
@@ -33,8 +34,17 @@ document.addEventListener("DOMContentLoaded", () => {
             const taskId = e.target.parentElement.getAttribute("data-id");
             updateTasks(taskId);
             renderTasks();
-        };
-
+            confetti({
+                particleCount: 100,
+                spread:70,
+                origin: { y:0.6},
+            })
+        }
+        if(e.target.classList.contains("undo")) {
+            const taskId = e.target.parentElement.getAttribute("data-id");
+            updateTasks(taskId);
+            renderTasks();
+        }
     });
 
 });
